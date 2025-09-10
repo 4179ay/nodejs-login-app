@@ -3,10 +3,11 @@ kind: Service
 metadata:
   name: node-login-service
 spec:
-  type: LoadBalancer
+  type: NodePort           # Avoids creating AWS ELB
   selector:
     app: node-login-app
   ports:
     - protocol: TCP
-      port: 80       # External port
-      targetPort: 3000  # Port your container listens on
+      port: 3000           # Port inside the cluster
+      targetPort: 3000     # Container port
+      nodePort: 30080      # External port to access via EC2 public IP
