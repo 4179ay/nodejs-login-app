@@ -14,22 +14,9 @@ spec:
     spec:
       containers:
         - name: node-login-app
-          image: <your-account-id>.dkr.ecr.<your-region>.amazonaws.com/node-login-app:latest
+          image: progjs/node-login-app:latest
           ports:
             - containerPort: 3000
           env:
             - name: NODE_ENV
               value: "production"
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: node-login-service
-spec:
-  type: LoadBalancer
-  selector:
-    app: node-login-app
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 3000
