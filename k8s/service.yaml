@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: node-login-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: node-login-app
+  ports:
+    - protocol: TCP
+      port: 80       # External port
+      targetPort: 3000  # Port your container listens on
